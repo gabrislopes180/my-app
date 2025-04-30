@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const StudiesScreen = () => {
+const ProfileScreen = () => {
   
   return(
     <View style = {styles.container}>
@@ -11,7 +11,7 @@ const StudiesScreen = () => {
 
 };
 
-export default StudiesScreen;
+export default ProfileScreen;
 
 const styles = StyleSheet.create({
 container: {

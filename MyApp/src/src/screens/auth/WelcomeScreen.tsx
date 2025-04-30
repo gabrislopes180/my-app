@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import {Text, View, TouchableOpacity, StyleSheet, Animated, ImageBackground} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../auth/rotas';
+import { RootStackParamList } from '../../../../App';
 
 type LoginScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Welcome'>;
 

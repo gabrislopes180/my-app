@@ -3,7 +3,7 @@ import { Animated } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../auth/rotas';
+import { RootStackParamList } from '../../../../../App';
 import {Ionicons} from '@expo/vector-icons';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 
@@ -38,7 +38,7 @@ const BarNavigate = () => {
           tabBarStyle: {
             backgroundColor: "#2b6864",
             position: "absolute",
-            elevation:0,
+            elevation: 0,
             marginBottom: 25,
             marginHorizontal: 10,
             height: 54,

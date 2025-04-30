@@ -9,6 +9,6 @@
     },
     "types": ["react", "react-native"]
   },
-  "include": ["src"]
+  "include": ["src", "App.tsx"]
 }
 

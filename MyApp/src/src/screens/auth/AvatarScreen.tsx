@@ -15,7 +15,7 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from './rotas';
+import { RootStackParamList } from '../../../../App';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import AntDesign from '@expo/vector-icons/AntDesign';
 
@@ -220,7 +220,7 @@ const styles = StyleSheet.create({
   },
   confirmAvatar: {
     position: "absolute",
-    top: 395,
+    top: 400,
     fontSize: 17,
     fontWeight: "bold",
     color: "grey",
