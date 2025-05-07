@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   ScrollView,
+  Image
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -20,9 +21,16 @@ const Study1Screen = () => {
           style={styles.backButton}
           onPress={() => navigation.goBack()}
         >
-          <Ionicons name="arrow-back" size={24} color="black" style ={{marginLeft: 15}}/>
+          <Ionicons
+            name="arrow-back"
+            size={24}
+            color="black"
+            style={{ marginLeft: 15 }}
+          />
         </TouchableOpacity>
         <Text style={styles.title}>Conteúdo do Estudo 1</Text>
+
+        <Image source={{ uri: "https://i.postimg.cc/9fNL4nQp/2693041.jpg" }} style ={{width: 320, height: 190, alignSelf: "center", margin: 35}}/>
 
         <View style={styles.textContainer}>
           <Text style={styles.content}>
@@ -51,7 +59,6 @@ const Study1Screen = () => {
             </Text>
           </Text>
         </View>
-
       </ScrollView>
     </View>
   );
@@ -68,6 +75,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     textAlign: "center",
     fontWeight: "bold",
+    color: "#447f78",
     marginVertical: 40,
   },
   content: {
@@ -80,10 +88,10 @@ const styles = StyleSheet.create({
   textContainer: {
     marginHorizontal: 20,
   },
-  checkboxContainer:{
-    flexDirection:"row",
+  checkboxContainer: {
+    flexDirection: "row",
     justifyContent: "flex-end",
-    margin:20
+    margin: 20,
   },
   checkbox: {
     width: 20,

@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   ScrollView,
+  Image,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -27,6 +28,19 @@ const Study4Screen = () => {
           />
         </TouchableOpacity>
         <Text style={styles.title}>Conteúdo do Estudo 4</Text>
+
+        <Image
+          source={{
+            uri: "https://i.postimg.cc/Y2YYWCrV/11256.jpg",
+          }}
+          style={{
+            width: 340,
+            height: 150,
+            alignSelf: "center",
+            margin: 35,
+            borderRadius: 15,
+          }}
+        />
 
         <View style={styles.textContainer}>
           <Text style={styles.content}>
@@ -72,6 +86,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontWeight: "bold",
     marginVertical: 40,
+    color: "#447f78",
   },
   content: {
     fontSize: 16,

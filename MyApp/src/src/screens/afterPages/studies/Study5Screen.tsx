@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   ScrollView,
+  Image,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -27,6 +28,19 @@ const Study5Screen = () => {
           />
         </TouchableOpacity>
         <Text style={styles.title}>Conteúdo do Estudo 5</Text>
+
+        <Image
+          source={{
+            uri: "https://i.postimg.cc/mkdNPdR4/vecteezy-back-view-of-man-and-woman-friends-standing-together-5638987.jpg",
+          }}
+          style={{
+            width: 350,
+            height: 230,
+            alignSelf: "center",
+            margin: 35,
+            borderRadius: 15,
+          }}
+        />
 
         <View style={styles.textContainer}>
           <Text style={styles.content}>
@@ -72,6 +86,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontWeight: "bold",
     marginVertical: 40,
+    color: "#447f78",
   },
   content: {
     fontSize: 16,

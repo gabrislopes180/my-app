@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native'; // rodando sem problemas
 import { createNativeStackNavigator } from '@react-navigation/native-stack'; // rodando sem problemas
+import { UserProvider } from "./userContext"
 
 import LoginScreen from './src/src/screens/auth/LoginScreen';
 import AvatarScreen from './src/src/screens/auth/AvatarScreen';
@@ -30,22 +31,24 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const Rotas = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Login"
-        screenOptions={{ headerShown: false }}
-      >
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Avatar" component={AvatarScreen} />
-        <Stack.Screen name="Navigate" component={BarNavigate} />
-        <Stack.Screen name="Welcome" component={WelcomeScreen} />
-        <Stack.Screen name="Study1" component={Study1Screen} />
-        <Stack.Screen name="Study2" component={Study2Screen} />
-        <Stack.Screen name="Study3" component={Study3Screen} />
-        <Stack.Screen name="Study4" component={Study4Screen} />
-        <Stack.Screen name="Study5" component={Study5Screen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <UserProvider>
+      <NavigationContainer>
+        <Stack.Navigator
+          initialRouteName="Login"
+          screenOptions={{ headerShown: false }}
+        >
+          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="Avatar" component={AvatarScreen} />
+          <Stack.Screen name="Navigate" component={BarNavigate} />
+          <Stack.Screen name="Welcome" component={WelcomeScreen} />
+          <Stack.Screen name="Study1" component={Study1Screen} />
+          <Stack.Screen name="Study2" component={Study2Screen} />
+          <Stack.Screen name="Study3" component={Study3Screen} />
+          <Stack.Screen name="Study4" component={Study4Screen} />
+          <Stack.Screen name="Study5" component={Study5Screen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </UserProvider>
   );
 };
 

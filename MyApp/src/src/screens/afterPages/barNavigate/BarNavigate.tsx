@@ -1,5 +1,5 @@
 import React, {useRef, useEffect} from 'react';
-import { Animated } from 'react-native';
+import { Animated, Platform } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -38,8 +38,9 @@ const BarNavigate = () => {
           tabBarStyle: {
             backgroundColor: "#2b6864",
             position: "absolute",
+            bottom: Platform.OS === "ios" ? 5 : 30,
             elevation: 0,
-            marginBottom: 25,
+            marginBottom: 20,
             marginHorizontal: 10,
             height: 54,
             borderRadius: 28,
@@ -102,6 +103,7 @@ const BarNavigate = () => {
           component={ProfileScreen}
           options={{
             headerShown: false,
+            tabBarHideOnKeyboard: true,
             tabBarIcon: ({ size, color, focused }) => {
               if (focused) {
                 return (

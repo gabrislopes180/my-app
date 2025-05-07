@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TextInput } from 'react-native';
 
 
 const PlayScreen = () => {
@@ -19,10 +19,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-  },
-  text: {
-    fontSize: 18,
-    marginBottom: 20,
   }
 });
 

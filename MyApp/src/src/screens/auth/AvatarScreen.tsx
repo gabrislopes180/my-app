@@ -12,6 +12,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from 'react-native';
+import { useUser } from "../../../../userContext";
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -23,6 +24,7 @@ type LoginScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, '
 
 const AvatarScreen = () => {
   const navigation = useNavigation<LoginScreenNavigationProp>();
+  const { setAvatarUri, setNicknameProvider } = useUser();
 
   const avatars = [
     { uri: 'https://i.postimg.cc/cHrDSh5G/avatar1.png' },
@@ -66,6 +68,8 @@ const AvatarScreen = () => {
       setShowError(true);
     } else {
       setShowError(false);
+      setAvatarUri(avatars[currentIndex].uri); // salvar avatar
+      setNicknameProvider(nickname); // salvar nickname
       navigation.navigate("Welcome");
     }
   };
@@ -74,24 +78,17 @@ const AvatarScreen = () => {
     // faz com que a tela acompanhe o teclado a subir
     <KeyboardAvoidingView
       style={{ flex: 1 }}
-      behavior={Platform.OS === "ios" ? "padding" : undefined}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
       keyboardVerticalOffset={Platform.OS === "android" ? 20 : 0}
     >
-      {/* ao clicar fora do textInput, o teclado suma  */}
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <LinearGradient
-          style={styles.gradient}
-          colors={["#eceaeb", "#eeeced", "#aaa8a9"]}
-          start={{ x: 0, y: 0.2 }}
-          end={{ x: 1, y: 1 }}
-        >
-          {/*  possibilita rolagem pela tela, para acessar a todo o conteúdo mesmo
+      
+        {/*  possibilita rolagem pela tela, para acessar a todo o conteúdo mesmo
           com o teclado ativo  */}
-          <ScrollView
-            contentContainerStyle={{ flexGrow: 1, alignItems: "center" }}
-            keyboardShouldPersistTaps="handled"
-            contentInsetAdjustmentBehavior="automatic"
-          >
+        <ScrollView
+          contentContainerStyle={{ flexGrow: 1 }}
+          
+        >
+          <View style={styles.gradient}>
             <TouchableOpacity
               style={styles.backButton}
               onPress={() => navigation.goBack()}
@@ -99,7 +96,11 @@ const AvatarScreen = () => {
               <Ionicons name="arrow-back" size={24} color="black" />
             </TouchableOpacity>
 
-            <Text style = {styles.loginAdvice}>Obs: Esta tela é apenas para o primeiro acesso ao quiz! Caso já a tenha utilizado retorne e faça login com o email e senha que te forneceram.</Text>
+            <Text style={styles.loginAdvice}>
+              Obs: Esta tela é apenas para o primeiro acesso ao quiz! Caso já a
+              tenha utilizado retorne e faça login com o email e senha que te
+              forneceram.
+            </Text>
 
             <Text style={styles.text}>Escolha um Avatar!</Text>
 
@@ -145,7 +146,6 @@ const AvatarScreen = () => {
             )}
 
             <TouchableOpacity
-              style={styles.confirmButton}
               onPress={() => {
                 setconfirmAvatar(true);
                 setVerify(true);
@@ -154,19 +154,23 @@ const AvatarScreen = () => {
               <Text style={styles.buttonText2}>Confirmar Avatar</Text>
             </TouchableOpacity>
 
-            <Text style={styles.inputLabel}>
-              Como você gostaria de ser chamado hoje?
-            </Text>
-            <TextInput
-              style={styles.input}
-              placeholder="Crie um nickName"
-              placeholderTextColor="grey"
-              value={nickname}
-              onChangeText={setNickName}
-            />
+            <View>
+              <Text style={styles.inputLabel}>
+                Escolha um nickName para jogar
+              </Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Seu nickName"
+                placeholderTextColor="grey"
+                value={nickname}
+                onChangeText={setNickName}
+              />
+            </View>
 
             {showError && (
-              <Text style={styles.error}>Preencha o campo acima e selecione um Avatar</Text>
+              <Text style={styles.error}>
+                Preencha o campo acima e selecione um Avatar
+              </Text>
             )}
 
             <TouchableOpacity
@@ -175,9 +179,8 @@ const AvatarScreen = () => {
             >
               <Text style={styles.buttonText}>Próximo</Text>
             </TouchableOpacity>
-          </ScrollView>
-        </LinearGradient>
-      </TouchableWithoutFeedback>
+          </View>
+        </ScrollView>
     </KeyboardAvoidingView>
   );
 };
@@ -190,6 +193,7 @@ const styles = StyleSheet.create({
   },
   gradient: {
     flex: 1,
+    alignItems: "center"
   },
   container: {
     alignItems: "center",
@@ -225,12 +229,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "grey",
   },
-  confirmButton: {
-    paddingVertical: 12,
-    paddingHorizontal: 30,
-    borderRadius: 20,
-    marginBottom: 20,
-  },
   buttonText2: {
     fontSize: 16,
     fontWeight: "bold",
@@ -238,9 +236,9 @@ const styles = StyleSheet.create({
   },
   inputLabel: {
     marginBottom: 5,
-    marginTop: 90,
+    marginTop: 60,
     alignSelf: "flex-start",
-    marginLeft: 30,
+    marginLeft: 0,
     fontWeight: "600",
     color: "grey",
   },
@@ -249,11 +247,10 @@ const styles = StyleSheet.create({
     borderColor: "#08443f",
     color: "grey",
     width: 345,
-    padding: 10,
     height: 45,
   },
   startButton: {
-    marginTop: 40,
+    marginTop: 55,
   },
   buttonText: {
     width: 350,

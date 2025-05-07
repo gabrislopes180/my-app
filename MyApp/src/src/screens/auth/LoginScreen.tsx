@@ -46,12 +46,8 @@ const LoginScreen = () => {
       keyboardVerticalOffset={Platform.OS === "android" ? 20 : 0}
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <LinearGradient
-          style={styles.container}
-          colors={["#eceaeb", "#eeeced", "#aaa8a9"]}
-          start={{ x: 0, y: 0.2 }}
-          end={{ x: 1, y: 1 }}
-        >
+        <View style={styles.container}>
+          
           <ScrollView
             contentContainerStyle={{ flexGrow: 1, alignItems: "center" }}
             keyboardShouldPersistTaps="handled"
@@ -124,7 +120,7 @@ const LoginScreen = () => {
               <Text style={styles.buttonText}>Entrar</Text>
             </TouchableOpacity>
           </ScrollView>
-        </LinearGradient>
+        </View>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
   );
@@ -139,7 +135,6 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
   inputLabel: {
-    marginBottom: 5,
     alignSelf: "flex-start",
     fontWeight: "600",
     color: "grey",
@@ -154,7 +149,6 @@ const styles = StyleSheet.create({
   },
   inputLabel2: {
     marginTop: 40,
-    marginBottom: 5,
     alignSelf: "flex-start",
     fontWeight: "600",
     color: "grey",

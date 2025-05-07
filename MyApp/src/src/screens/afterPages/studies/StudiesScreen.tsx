@@ -80,7 +80,7 @@ const StudiesScreen = () => {
 
   return (
     <View style={styles.container}>
-      <ScrollView>
+      <ScrollView horizontal = {false}>
         <Text style={styles.title}>Meus estudos</Text>
         <View style={styles.studiesContainer}>
           {/* -------------------Aqui se inicia a box do assunto 1------------------------ */}
@@ -381,7 +381,7 @@ const StudiesScreen = () => {
         </View>
 
         {/* ------Aqui se inicia a barra de progresso com a porcentagem dos estudos------ */}
-        <View style={{ marginLeft: "7%" }}>
+        <View>
           <Text style={styles.text}>
             Progresso do estudo: {Math.round(progress * 100)}%
           </Text>
@@ -405,11 +405,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "center",
+    backgroundColor: "#cafaef"
   },
   title: {
     alignSelf: "flex-start",
-    marginVertical: 50,
-    marginLeft: 20,
+    marginVertical: 60,
     fontSize: 23,
     fontWeight: "bold",
     color: "grey",
@@ -418,8 +418,8 @@ const styles = StyleSheet.create({
     gap: 50,
   },
   studiesBox: {
-    marginHorizontal: 35,
-    padding: 10,
+    width: "93%",
+    padding: 0,
     borderRadius: 10,
     backgroundColor: "#fff",
     shadowColor: "#000",
@@ -427,12 +427,16 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
+    alignSelf: "center",
   },
   studiesDivision: {
     flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    margin: 10,
   },
   button: {
-    marginTop: 15,
+    alignItems: "center",
   },
   buttonText: {
     textAlign: "center",
@@ -441,9 +445,9 @@ const styles = StyleSheet.create({
     color: "#2b6864",
   },
   checkButton: {
+    alignItems: "center",
     position: "absolute",
     left: 260,
-    top: 50,
   },
   text: {
     alignSelf: "flex-start",
@@ -454,11 +458,11 @@ const styles = StyleSheet.create({
   },
   progressBar: {
     height: 8,
-    width: "90%",
+    width: "92%",
     backgroundColor: "#BEBEBE",
     borderRadius: 15,
     overflow: "hidden",
-    marginBottom: 120,
+    marginBottom: 215,
   },
   progressLine: {
     height: "100%",
