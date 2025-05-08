@@ -3,6 +3,11 @@ import { View, Text, StyleSheet, Animated, ScrollView, TouchableOpacity} from 'r
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
+
 
 type RootStackParamList = {
   Studies: undefined;
@@ -418,8 +423,7 @@ const styles = StyleSheet.create({
     gap: 50,
   },
   studiesBox: {
-    width: "93%",
-    padding: 0,
+    width: wp("75%"),
     borderRadius: 10,
     backgroundColor: "#fff",
     shadowColor: "#000",
@@ -433,7 +437,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
-    margin: 10,
+    margin: 10
   },
   button: {
     alignItems: "center",
@@ -447,7 +451,7 @@ const styles = StyleSheet.create({
   checkButton: {
     alignItems: "center",
     position: "absolute",
-    left: 260,
+    right: wp("5%")
   },
   text: {
     alignSelf: "flex-start",
@@ -458,7 +462,7 @@ const styles = StyleSheet.create({
   },
   progressBar: {
     height: 8,
-    width: "92%",
+    width: wp("85%"),
     backgroundColor: "#BEBEBE",
     borderRadius: 15,
     overflow: "hidden",

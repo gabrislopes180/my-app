@@ -12,8 +12,11 @@ import {
   Platform,
   ScrollView,
 } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../../../App";
 import { Ionicons } from "@expo/vector-icons";
@@ -143,7 +146,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: "#08443f",
     color: "grey",
-    width: 345,
+    width: wp('90%'),
     padding: 10,
     height: 45,
   },
@@ -158,7 +161,7 @@ const styles = StyleSheet.create({
     
   },
   buttonText: {
-    width: 350,
+    width: wp("85%"),
     height: 45,
     paddingTop: 10,
     borderRadius: 15,
@@ -193,7 +196,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderBottomWidth: 1,
     borderColor: "#08443f",
-    width: 345,
+    width: wp("90%"),
     paddingRight: 10,
     height: 45,
   },

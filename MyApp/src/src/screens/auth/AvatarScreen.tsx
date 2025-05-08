@@ -13,12 +13,14 @@ import {
   Keyboard,
 } from 'react-native';
 import { useUser } from "../../../../userContext";
-import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../../App';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 import Ionicons from '@expo/vector-icons/Ionicons';
-import AntDesign from '@expo/vector-icons/AntDesign';
 
 type LoginScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Avatar'>;
 
@@ -53,7 +55,6 @@ const AvatarScreen = () => {
   const [nickname, setNickName] = useState('');
   const [showError, setShowError] = useState(false);
   const [confirmAvatar, setconfirmAvatar] = useState(false);
-  const [verify, setVerify] = useState(false);
 
   const handlePrev = () => {
     setCurrentIndex((prev) => (prev === 0 ? avatars.length - 1 : prev - 1));
@@ -64,7 +65,7 @@ const AvatarScreen = () => {
   };
 
   const validateNickname = () => {
-    if (nickname.trim() === "" || verify === false) {
+    if (nickname.trim() === "") {
       setShowError(true);
     } else {
       setShowError(false);
@@ -81,106 +82,86 @@ const AvatarScreen = () => {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       keyboardVerticalOffset={Platform.OS === "android" ? 20 : 0}
     >
-      
-        {/*  possibilita rolagem pela tela, para acessar a todo o conteúdo mesmo
+      {/*  possibilita rolagem pela tela, para acessar a todo o conteúdo mesmo
           com o teclado ativo  */}
-        <ScrollView
-          contentContainerStyle={{ flexGrow: 1 }}
-          
-        >
-          <View style={styles.gradient}>
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        <View style={styles.gradient}>
+          <TouchableOpacity
+            style={styles.backButton}
+            onPress={() => navigation.goBack()}
+          >
+            <Ionicons name="arrow-back" size={24} color="black" />
+          </TouchableOpacity>
+
+          <Text style={styles.loginAdvice}>
+            Obs: Esta tela é apenas para o primeiro acesso ao quiz! Caso já a
+            tenha utilizado retorne e faça login com o email e senha que te
+            forneceram.
+          </Text>
+
+          <Text style={styles.text}>Escolha um Avatar!</Text>
+
+          <View style={styles.avatarContainer}>
             <TouchableOpacity
-              style={styles.backButton}
-              onPress={() => navigation.goBack()}
+              onPress={() => {
+                handlePrev();
+                setconfirmAvatar(false);
+              }}
             >
-              <Ionicons name="arrow-back" size={24} color="black" />
+              <Ionicons name="chevron-back-circle" size={30} color="#333" />
             </TouchableOpacity>
 
-            <Text style={styles.loginAdvice}>
-              Obs: Esta tela é apenas para o primeiro acesso ao quiz! Caso já a
-              tenha utilizado retorne e faça login com o email e senha que te
-              forneceram.
-            </Text>
+            <Image source={avatars[currentIndex]} style={styles.avatar} />
 
-            <Text style={styles.text}>Escolha um Avatar!</Text>
-
-            <View style={styles.avatarContainer}>
-              <TouchableOpacity
-                onPress={() => {
-                  handlePrev();
-                  setconfirmAvatar(false);
-                  setVerify(false);
-                }}
-              >
-                <Ionicons name="chevron-back-circle" size={30} color="#333" />
-              </TouchableOpacity>
-
-              <Image source={avatars[currentIndex]} style={styles.avatar} />
-
-              <TouchableOpacity
-                onPress={() => {
-                  handleNext();
-                  setconfirmAvatar(false);
-                  setVerify(false);
-                }}
-              >
-                <Ionicons
-                  name="chevron-forward-circle"
-                  size={30}
-                  color="#333"
-                />
-              </TouchableOpacity>
-            </View>
-
-            {verify && (
-              <AntDesign
-                name="checkcircleo"
-                size={20}
-                color="black"
-                style={styles.verify}
-              />
-            )}
+            <TouchableOpacity
+              onPress={() => {
+                handleNext();
+                setconfirmAvatar(false);
+              }}
+            >
+              <Ionicons name="chevron-forward-circle" size={30} color="#333" />
+            </TouchableOpacity>
 
             {confirmAvatar && (
               <Text style={styles.confirmAvatar}>Avatar selecionado!</Text>
             )}
-
-            <TouchableOpacity
-              onPress={() => {
-                setconfirmAvatar(true);
-                setVerify(true);
-              }}
-            >
-              <Text style={styles.buttonText2}>Confirmar Avatar</Text>
-            </TouchableOpacity>
-
-            <View>
-              <Text style={styles.inputLabel}>
-                Escolha um nickName para jogar
-              </Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Seu nickName"
-                placeholderTextColor="grey"
-                value={nickname}
-                onChangeText={setNickName}
-              />
-            </View>
-
-            {showError && (
-              <Text style={styles.error}>
-                Preencha o campo acima e selecione um Avatar
-              </Text>
-            )}
-
-            <TouchableOpacity
-              style={styles.startButton}
-              onPress={validateNickname}
-            >
-              <Text style={styles.buttonText}>Próximo</Text>
-            </TouchableOpacity>
           </View>
-        </ScrollView>
+
+          <TouchableOpacity
+            onPress={() => {
+              setconfirmAvatar(true);
+            }}
+          >
+            <Text style={styles.buttonText2}>Confirmar Avatar</Text>
+          </TouchableOpacity>
+
+          <View>
+            <Text style={styles.inputLabel}>
+              Escolha um nickName para jogar
+            </Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Seu nickName"
+              placeholderTextColor="grey"
+              value={nickname}
+              onChangeText={setNickName}
+            />
+          </View>
+
+          {showError && (
+            <Text style={styles.error}>
+              Preencha o campo acima e selecione um Avatar
+            </Text>
+          )}
+
+          <TouchableOpacity
+            style={styles.startButton}
+            onPress={validateNickname}
+          >
+            <Text style={styles.buttonText}>Próximo</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     </KeyboardAvoidingView>
   );
 };
@@ -207,7 +188,7 @@ const styles = StyleSheet.create({
     color: "grey",
   },
   backButton: {
-    marginTop: 20,
+    marginTop: 45,
     marginRight: 320,
   },
   avatarContainer: {
@@ -224,7 +205,8 @@ const styles = StyleSheet.create({
   },
   confirmAvatar: {
     position: "absolute",
-    top: 400,
+    top: wp("40%"),
+    right: wp("6%"),
     fontSize: 17,
     fontWeight: "bold",
     color: "grey",
@@ -253,7 +235,7 @@ const styles = StyleSheet.create({
     marginTop: 55,
   },
   buttonText: {
-    width: 350,
+    width: wp("90%"),
     height: 45,
     paddingTop: 10,
     borderRadius: 15,
@@ -270,11 +252,7 @@ const styles = StyleSheet.create({
     marginLeft: 30,
     marginTop: 5,
   },
-  verify: {
-    position: "absolute",
-    top: 365,
-    right: 160,
-  },
+  
   loginAdvice: {
     textAlign: "center",
     margin: 10,

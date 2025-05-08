@@ -270,8 +270,7 @@ const styles = StyleSheet.create({
     color: "grey",
   },
   positionsContainer: {
-    marginTop: 100,
-    marginBottom: 100
+    marginVertical: 130
   },
   box: {
     marginTop: 30,

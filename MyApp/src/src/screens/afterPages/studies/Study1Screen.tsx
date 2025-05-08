@@ -86,7 +86,8 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   textContainer: {
-    marginHorizontal: 20,
+    marginVertical: 50,
+    marginHorizontal: 15
   },
   checkboxContainer: {
     flexDirection: "row",
